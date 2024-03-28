@@ -5,6 +5,8 @@ import concurrent.futures
 import time
 from bs4 import BeautifulSoup
 import requests
+import gdown
+
 
 app = Flask(__name__)
 
@@ -13,8 +15,13 @@ def home():
     if request.method == 'POST':
         url = request.form.get('url')
 
+        # Replace FILE_ID with your file's ID
+        drive = 'https://drive.google.com/uc?id=1oMttzGv2r8ZAhkvv0sX87iLp1oxNmPWT'
+        output = 'Bertopic POC v1.pkl'
+        gdown.download(drive, output, quiet=False)
+        output = 'Bertopic POC v1.pkl'
         # define the local path of the pickle file
-        local_model_path = '/Users/royzalta/Downloads/Bertopic POC v1.pkl'
+        local_model_path = 'Bertopic POC v1.pkl'
         # load the pickle file as loaded_topic_model
         loaded_topic_model = BERTopic.load(local_model_path)
 
